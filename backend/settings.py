@@ -37,7 +37,25 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'dj_rest_auth', # Provides easy integration for authentication APIs
+    'rest_framework.authtoken', # we will use rest_framework_simplejwt
+    'rest_framework',
+    'rest_framework_simplejwt',
 ]
+
+SITE_ID = 1
+DJANGO_REST_AUTH = {
+    'TOKEN_MODEL': None,  # Disabling the default token model
+}
+
+ACCOUNT_EMAIL_VERIFICATION = 'none'  # Enable email verification if needed
+ACCOUNT_AUTHENTICATION_METHOD = 'username'  # Can be 'username_email' too
+ACCOUNT_EMAIL_REQUIRED = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -47,6 +65,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware'
 ]
 
 ROOT_URLCONF = 'backend.urls'
