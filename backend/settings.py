@@ -46,6 +46,9 @@ INSTALLED_APPS = [
     'rest_framework.authtoken', # we will use rest_framework_simplejwt
     'rest_framework',
     'rest_framework_simplejwt',
+    
+    # apps
+    'mvp'
 ]
 
 SITE_ID = 1
@@ -56,6 +59,18 @@ DJANGO_REST_AUTH = {
 ACCOUNT_EMAIL_VERIFICATION = 'none'  # Enable email verification if needed
 ACCOUNT_AUTHENTICATION_METHOD = 'username'  # Can be 'username_email' too
 ACCOUNT_EMAIL_REQUIRED = True
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication', # more suitable during development stage.
+        'rest_framework.authentication.SessionAuthentication',
+        # 'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+        ),
+}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
