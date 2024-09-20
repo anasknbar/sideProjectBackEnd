@@ -52,10 +52,3 @@ class PromptTemplate(models.Model):
     def __str__(self):
         return f"Template: {self.name} by {self.user.username}"
 
-# class Profile(models.Model):
-#     user = models.OneToOneField(User, on_delete=models.CASCADE)  # Link the profile to the user
-#     bio = models.TextField(null=True, blank=True)
-#     profile_picture = models.ImageField(upload_to='profile_pics/', null=True, blank=True)
-
-#     def __str__(self):
-#         return f"Profile of {self.user.username}"
