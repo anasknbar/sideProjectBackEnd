@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'rest_framework.authtoken', # we will use rest_framework_simplejwt
     'rest_framework',
     'rest_framework_simplejwt',
+    'corsheaders',
+    
     
     # apps
     'mvp'
@@ -60,6 +62,21 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'  # Enable email verification if needed
 ACCOUNT_AUTHENTICATION_METHOD = 'username'  # Can be 'username_email' too
 ACCOUNT_EMAIL_REQUIRED = True
 
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # React front-end or any other port
+    "http://127.0.0.1:3000",  # Localhost with different IP format
+]
+CORS_ALLOW_METHODS = (
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+)
+CORS_ALLOW_CREDENTIALS = True
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication', # more suitable during development stage.
@@ -73,6 +90,8 @@ REST_FRAMEWORK = {
 
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
